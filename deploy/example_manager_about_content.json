@@ -1,0 +1,10 @@
+{
+  "app_name": "서강대 프린터 매니저 SOGANG Print Manager",
+  "app_version": "1.0.0",
+  "author": "서강대학교 디지털정보처",
+  "github_url": "https://github.com/OWNER/REPOSITORY",
+  "license_name": "",
+  "about_title": "프로그램 정보",
+  "about_summary": "매니저 프로그램 설명을 입력하세요.",
+  "manual_text": "[Manager 매뉴얼]\n\n1. 서버 시작/종료 설명을 입력하세요.\n2. 공지사항 관리 방법을 입력하세요.\n3. WISDOM 설정 설명을 입력하세요.\n4. 로그 확인 방법을 입력하세요.\n5. 마스터 비밀번호 초기화 방법을 입력하세요.\n\n[문의]\n관리자 문의 정보를 입력하세요."
+}

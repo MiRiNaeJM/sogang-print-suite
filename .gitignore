@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Build artifacts
+build/
+dist/
+installer_output/
+*.spec
+*.exe
+*.msi
+
+# Logs and local editor files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Runtime configuration and secrets
+client_config.json
+about_content.json
+manager_public_config.json
+manager_secrets.json
+manager_secrets.enc.json
+manager_about_content.json
+client_about_content.json
+
+# Local scratch archives
+*.zip
+*.Zip

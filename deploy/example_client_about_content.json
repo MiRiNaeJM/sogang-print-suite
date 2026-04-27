@@ -1,0 +1,10 @@
+{
+  "app_name": "서강대 프린터 클라이언트 SOGANG Print Client",
+  "app_version": "1.0.0",
+  "author": "서강대학교 디지털정보처",
+  "github_url": "https://github.com/OWNER/REPOSITORY",
+  "license_name": "",
+  "about_title": "프로그램 정보",
+  "about_summary": "클라이언트 프로그램 설명을 입력하세요.",
+  "manual_text": "[Client 매뉴얼]\n\n1. 사용 방법을 입력하세요.\n2. 상태 메시지 설명을 입력하세요.\n3. 오류 발생 시 안내 문구를 입력하세요.\n\n[문의]\n관리자 문의 정보를 입력하세요."
+}

@@ -1,0 +1,6 @@
+{
+  "manager_host": "0.0.0.0",
+  "manager_port": 8787,
+  "announcement": "",
+  "admin_password_hash": ""
+}
