@@ -32,7 +32,7 @@ Client가 하지 않는 일은 다음입니다.
 
 ## 2. 화면 구성
 
-![Client 작동 중 홈 화면](../docs/images/client-home.png)
+![Client 작동 중 홈 화면](../docs/images/client-home.jpg)
 
 | 요소 | 역할 |
 |---|---|
@@ -48,7 +48,7 @@ Client가 하지 않는 일은 다음입니다.
 
 ## 3. 설치 중 Manager 주소 입력
 
-![Client 설치 페이지 Manager 주소 입력 화면](../docs/images/client-install-server-url.png)
+![Client 설치 페이지 Manager 주소 입력 화면](../docs/images/client-install-server-url.jpg)
 
 Client 설치 프로그램은 설치 중 Manager IPv4 주소와 포트를 입력받습니다. `http://`는 사용자가 입력하지 않고 설치 스크립트가 자동으로 붙입니다.
 
