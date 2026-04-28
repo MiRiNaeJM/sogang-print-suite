@@ -2,7 +2,9 @@
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "서강대학교 디지털정보처"
 #define MyAppExeName "SOGANG Print Manager.exe"
-#define MySourceDir "dist\SOGANG Print Manager"
+
+#define MySourceDir "..\dist\SOGANG Print Manager"
+#define MyOutputDir "..\installer_output"
 
 ; Manager 설치 프로그램의 기본 메타데이터와 설치 경로를 정의한다.
 ; Manager 서버 설정과 WISDOM 정보는 설치 후 앱 내부 초기 설정에서 입력한다.
@@ -15,7 +17,7 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\SOGANG Print Manager
 DefaultGroupName=서강대학교 디지털정보처
 DisableProgramGroupPage=yes
-OutputDir=installer_output
+OutputDir={#MyOutputDir}
 OutputBaseFilename=SOGANGPrintManagerSetup-{#MyAppVersion}
 SetupIconFile=assets\app_icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}

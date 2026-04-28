@@ -2,7 +2,9 @@
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "서강대학교 디지털정보처"
 #define MyAppExeName "SOGANG Print Client.exe"
-#define MySourceDir "dist\SOGANG Print Client"
+
+#define MySourceDir "..\dist\SOGANG Print Client"
+#define MyOutputDir "..\installer_output"
 
 ; Client 설치 프로그램의 기본 메타데이터와 설치 경로를 정의한다.
 ; PyInstaller 결과물은 MySourceDir 경로에 미리 생성되어 있어야 한다.
@@ -15,7 +17,7 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\SOGANG Print Client
 DefaultGroupName=서강대학교 디지털정보처
 DisableProgramGroupPage=yes
-OutputDir=installer_output
+OutputDir={#MyOutputDir}
 OutputBaseFilename=SOGANGPrintClientSetup-{#MyAppVersion}
 SetupIconFile=assets\app_icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
