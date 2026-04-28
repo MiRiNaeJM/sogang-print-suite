@@ -3,7 +3,7 @@ waitress>=3.0.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 cryptography>=42.0.0
-pywin32>=306; platform_system == "Windows"
+pywin32>=311; platform_system == "Windows"
 pystray>=0.19.5
 pillow>=10.0.0
 pyinstaller>=6.0.0
