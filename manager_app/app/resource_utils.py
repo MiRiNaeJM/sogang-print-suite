@@ -1,50 +1,74 @@
-"""Manager 리소스 파일을 안전하게 로드하는 유틸리티 모듈.
+"""공용 리소스 파일을 안전하게 로드하는 유틸리티 모듈.
 
-PyInstaller 실행 환경과 개발 환경 모두에서 아이콘 파일을 찾고, 실패해도 Manager 실행을 막지 않는다.
+Manager와 Client는 루트 assets/app_icon.ico 하나를 공유한다.
+개발 환경과 PyInstaller 실행 환경의 기준 경로가 다르므로 이 모듈에서 실제 리소스 경로를 통일한다.
 """
 
 from __future__ import annotations
 
 from pathlib import Path
+import sys
 import tkinter as tk
 
-
-ASSETS_DIR = Path(__file__).resolve().parents[1] / "assets"
-APP_ICON_PNG = ASSETS_DIR / "app_icon.png"
-APP_ICON_ICO = ASSETS_DIR / "app_icon.ico"
+from PIL import Image, ImageTk
 
 
-def _load_photo_image(path: Path, *, width: int | None = None, height: int | None = None) -> tk.PhotoImage | None:
-    """아이콘 이미지를 Tkinter PhotoImage로 읽되 실패하면 None을 반환한다."""
-    if not path.exists():
+APP_ICON = Path("assets") / "app_icon.ico"
+
+
+def resource_path(relative_path: str | Path) -> Path:
+    """개발 환경과 PyInstaller 실행 환경에서 리소스 파일의 실제 경로를 반환한다."""
+
+    if getattr(sys, "frozen", False):
+        base_path = Path(getattr(sys, "_MEIPASS", Path(sys.executable).resolve().parent))
+    else:
+        base_path = Path(__file__).resolve().parents[2]
+
+    return base_path / relative_path
+
+
+def _load_photo_image(path: str | Path, *, width: int | None = None, height: int | None = None) -> ImageTk.PhotoImage | None:
+    """ICO 파일을 Tkinter 라벨에 표시 가능한 PhotoImage로 변환한다.
+
+    tk.PhotoImage는 ICO를 안정적으로 처리하지 못하므로 Pillow로 열어 ImageTk.PhotoImage로 변환한다.
+    """
+
+    icon_path = resource_path(path)
+
+    if not icon_path.exists():
         return None
 
     try:
-        image = tk.PhotoImage(file=str(path))
-    except tk.TclError:
+        image = Image.open(icon_path)
+        image.load()
+
+        if width or height:
+            target_width = width or image.width
+            target_height = height or image.height
+            image.thumbnail((target_width, target_height), Image.LANCZOS)
+
+        return ImageTk.PhotoImage(image)
+    except Exception:
         return None
 
-    if width and image.width() > width:
-        image = image.subsample(max(1, image.width() // width))
-    if height and image.height() > height:
-        image = image.subsample(max(1, image.height() // height))
 
-    return image
+def _set_window_icon(window: tk.Misc) -> ImageTk.PhotoImage | None:
+    """공용 ICO 파일을 창 아이콘으로 적용하고 실패해도 앱 실행을 계속한다."""
 
+    icon_path = resource_path(APP_ICON)
 
-def _set_window_icon(window: tk.Misc) -> tk.PhotoImage | None:
-    """창 아이콘을 설정하고 실패해도 앱 실행을 계속한다."""
-    if APP_ICON_ICO.exists():
+    if icon_path.exists():
         try:
-            window.iconbitmap(str(APP_ICON_ICO))
+            window.iconbitmap(str(icon_path))
             return None
         except tk.TclError:
             pass
 
-    image = _load_photo_image(APP_ICON_PNG, width=64, height=64)
+    image = _load_photo_image(APP_ICON, width=64, height=64)
     if image is not None:
         try:
             window.iconphoto(True, image)
         except tk.TclError:
             pass
+
     return image

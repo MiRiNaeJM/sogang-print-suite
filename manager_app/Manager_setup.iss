@@ -19,7 +19,7 @@ DefaultGroupName=서강대학교 디지털정보처
 DisableProgramGroupPage=yes
 OutputDir={#MyOutputDir}
 OutputBaseFilename=SOGANGPrintManagerSetup-{#MyAppVersion}
-SetupIconFile=assets\app_icon.ico
+SetupIconFile=..\assets\app_icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma2
 SolidCompression=yes
@@ -34,8 +34,7 @@ Name: "korean"; MessagesFile: "compiler:Languages\Korean.isl"
 ; 앱 실행 파일, asset, Manager/Client 프로그램 정보 기본 JSON을 복사한다.
 [Files]
 Source: "{#MySourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "assets\app_icon.ico"; DestDir: "{app}\assets"; Flags: ignoreversion
-Source: "assets\app_icon.png"; DestDir: "{app}\assets"; Flags: ignoreversion
+Source: "..\assets\app_icon.ico"; DestDir: "{app}\assets"; Flags: ignoreversion
 Source: "..\deploy\example_client_about_content.json"; DestDir: "{commonappdata}\SOGANG Print Manager"; DestName: "client_about_content.json"; Flags: ignoreversion onlyifdoesntexist
 Source: "..\deploy\example_manager_about_content.json"; DestDir: "{commonappdata}\SOGANG Print Manager"; DestName: "manager_about_content.json"; Flags: ignoreversion onlyifdoesntexist
 
@@ -51,7 +50,7 @@ Name: "{commonstartup}\SOGANG Print Manager"; Filename: "{app}\{#MyAppExeName}";
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; \
-  Description: "설치 완료 후 '서강대 프린터 매니저 SOGANG Print Manager' 실행"; \
+  Description: "설치 완료 후 'SOGANG Print Manager' 실행"; \
   WorkingDir: "{app}"; \
   Flags: nowait postinstall skipifsilent
 
@@ -60,7 +59,7 @@ Filename: "{app}\{#MyAppExeName}"; \
 var
   OptionPage: TInputOptionWizardPage;
 
-; 설치 마법사에 기존 설정 초기화 선택지를 추가한다.
+// 설치 마법사에 기존 설정 초기화 선택지를 추가한다.
 procedure InitializeWizard;
 begin
   OptionPage := CreateInputOptionPage(
@@ -76,7 +75,7 @@ begin
   OptionPage.Values[0] := False;
 end;
 
-; 설치 완료 단계에서 필요한 ProgramData 폴더를 만들고 선택 시 기존 설정을 삭제한다.
+// 설치 완료 단계에서 필요한 ProgramData 폴더를 만들고 선택 시 기존 설정을 삭제한다.
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   ConfigDir: String;

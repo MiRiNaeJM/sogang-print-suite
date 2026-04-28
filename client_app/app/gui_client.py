@@ -22,7 +22,7 @@ from .i18n import (
     two_line,
 )
 from .manager_api import ManagerApi
-from .resource_utils import APP_ICON_PNG, _load_photo_image, _set_window_icon
+from .resource_utils import APP_ICON, _load_photo_image, _set_window_icon
 from .ui_style import (
     apply_base_style,
     bordered_card,
@@ -85,7 +85,7 @@ class ClientGUI:
         ttk.Label(title_box, text="Printer Refill Client", style="Subtitle.TLabel").grid(row=1, column=0, sticky="w", pady=(5, 0))
         ttk.Label(title_box, text=f"PC: {self.context.pc_name}", style="Subtitle.TLabel").grid(row=2, column=0, sticky="w", pady=(12, 0))
 
-        self.header_icon_image = _load_photo_image(APP_ICON_PNG, width=120, height=120)
+        self.header_icon_image = _load_photo_image(APP_ICON, width=120, height=120)
         if self.header_icon_image is not None:
             self.header_icon_label = ttk.Label(header, image=self.header_icon_image, cursor="hand2")
         else:

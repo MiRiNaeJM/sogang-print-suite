@@ -19,7 +19,7 @@ DefaultGroupName=서강대학교 디지털정보처
 DisableProgramGroupPage=yes
 OutputDir={#MyOutputDir}
 OutputBaseFilename=SOGANGPrintClientSetup-{#MyAppVersion}
-SetupIconFile=assets\app_icon.ico
+SetupIconFile=..\assets\app_icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma2
 SolidCompression=yes
@@ -34,8 +34,7 @@ Name: "korean"; MessagesFile: "compiler:Languages\Korean.isl"
 ; 앱 실행 파일과 Client 런타임에 필요한 asset, 기본 프로그램 정보 파일을 복사한다.
 [Files]
 Source: "{#MySourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "assets\app_icon.ico"; DestDir: "{app}\assets"; Flags: ignoreversion
-Source: "assets\app_icon.png"; DestDir: "{app}\assets"; Flags: ignoreversion
+Source: "..\assets\app_icon.ico"; DestDir: "{app}\assets"; Flags: ignoreversion
 Source: "..\deploy\example_client_about_content.json"; DestDir: "{commonappdata}\SOGANG Print Client"; DestName: "about_content.json"; Flags: ignoreversion onlyifdoesntexist
 
 ; Client 설정 파일을 일반 사용자 권한으로 갱신할 수 있도록 ProgramData 폴더 권한을 연다.
@@ -60,7 +59,7 @@ var
   ManagerPage: TInputQueryWizardPage;
   OptionPage: TInputOptionWizardPage;
 
-; 포트와 IPv4 각 구간이 숫자로만 구성되었는지 검사한다.
+// 포트와 IPv4 각 구간이 숫자로만 구성되었는지 검사한다.
 function IsDigitsOnly(Value: String): Boolean;
 var
   I: Integer;
@@ -77,7 +76,7 @@ begin
   end;
 end;
 
-; Client 설정은 숫자 IPv4만 받도록 제한해 잘못된 URL 입력을 줄인다.
+// Client 설정은 숫자 IPv4만 받도록 제한해 잘못된 URL 입력을 줄인다.
 function ValidateIPv4(Value: String): Boolean;
 var
   S: String;
@@ -117,7 +116,7 @@ begin
   Result := True;
 end;
 
-; Manager 서버 포트가 TCP 포트 범위 안에 있는지 확인한다.
+// Manager 서버 포트가 TCP 포트 범위 안에 있는지 확인한다.
 function ValidatePort(Value: String): Boolean;
 var
   Port: Integer;
@@ -126,7 +125,7 @@ begin
   Result := (Port >= 1) and (Port <= 65535);
 end;
 
-; 입력받은 Manager URL을 JSON 문자열에 안전하게 넣기 위해 이스케이프한다.
+// 입력받은 Manager URL을 JSON 문자열에 안전하게 넣기 위해 이스케이프한다.
 function JsonEscape(Value: String): String;
 begin
   Result := Value;
@@ -137,7 +136,7 @@ begin
   StringChangeEx(Result, #10, '\n', True);
 end;
 
-; 설치 마법사에서 Manager 주소 입력 페이지와 설정 초기화 선택지를 만든다.
+// 설치 마법사에서 Manager 주소 입력 페이지와 설정 초기화 선택지를 만든다.
 procedure InitializeWizard;
 begin
   ManagerPage := CreateInputQueryPage(
@@ -164,7 +163,7 @@ begin
   OptionPage.Values[0] := False;
 end;
 
-; 다음 단계로 넘어가기 전에 Manager 주소 입력값을 검증한다.
+// 다음 단계로 넘어가기 전에 Manager 주소 입력값을 검증한다.
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
   IpValue: String;
@@ -193,7 +192,7 @@ begin
   end;
 end;
 
-; 설치 완료 단계에서 client_config.json을 생성하거나 기존 설정을 유지한다.
+// 설치 완료 단계에서 client_config.json을 생성하거나 기존 설정을 유지한다.
 procedure CurStepChanged(CurStep: TSetupStep);
 var
   ConfigDir: String;

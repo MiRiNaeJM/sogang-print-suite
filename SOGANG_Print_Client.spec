@@ -5,14 +5,14 @@ from pathlib import Path
 project_root = Path(SPECPATH)
 
 client_main = project_root / "client_app" / "main.py"
-client_assets = project_root / "client_app" / "assets"
-client_icon = client_assets / "app_icon.ico"
+shared_assets = project_root / "assets"
+shared_icon = shared_assets / "app_icon.ico"
 
 a = Analysis(
     [str(client_main)],
     pathex=[str(project_root)],
     binaries=[],
-    datas=[(str(client_assets), "assets")],
+    datas=[(str(shared_assets), "assets")],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -40,7 +40,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=str(client_icon),
+    icon=str(shared_icon),
 )
 
 coll = COLLECT(
