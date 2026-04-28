@@ -35,3 +35,9 @@ client_about_content.json
 # Local scratch archives
 *.zip
 *.Zip
+
+# PyInstaller generated spec files are ignored by default,
+# but the root build specs are maintained as source files.
+*.spec
+!SOGANG_Print_Manager.spec
+!SOGANG_Print_Client.spec
