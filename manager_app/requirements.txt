@@ -6,4 +6,4 @@ cryptography>=42.0.0
 pywin32>=306; platform_system == "Windows"
 pystray>=0.19.5
 pillow>=10.0.0
-pyinstaller>=6.0.0
+pyinstaller>=6.20.0
